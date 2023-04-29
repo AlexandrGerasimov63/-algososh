@@ -14,7 +14,7 @@ export const FibonacciPage: React.FC = () => {
   // Добавляем слушатель onChange на инпут
   const changeInputValue = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setInputState(evt.target.value)
-    if(Number(evt.target.value)>19){
+    if(Number(evt.target.value)>19 || Number(evt.target.value)<1 ){
       setDisabledBtn(true)
     } else {setDisabledBtn(false)}
   }
@@ -31,6 +31,7 @@ export const FibonacciPage: React.FC = () => {
       <div className={fiboStyle.input_wrapper}>
         <Input
         min={1}
+        
         max={19}
         isLimitText={true}
         type="number"
