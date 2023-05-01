@@ -23,7 +23,7 @@ export const SortingPage: React.FC = () => {
 
   // Отрисовка рандомных массивов на экране
   useEffect(()=>{
-    randomArr(setCreateArr,createArr)
+     return randomArr(setCreateArr,createArr)
     
   },[])
   //Установка значения радио кнопки по клику
