@@ -1,0 +1,35 @@
+.input_wrapper {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  max-width: 980px;
+}
+.checkbox_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.button_wrapper {
+  display: flex;
+  gap: 12px;
+  margin-left: 52px;
+}
+.button_arr {
+  margin-left: 80px;
+}
+.columns_list_wrapper {
+  margin-top: 70px;
+  display: flex;
+  height: 320px;
+}
+
+.columns_list {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  list-style-type: none;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0;
+  gap: 10px;
+}
