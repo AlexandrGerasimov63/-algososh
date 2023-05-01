@@ -73,24 +73,24 @@ export const SortingPage: React.FC = () => {
         <div className={sortingStyle.button_wrapper}>
           <Button
             text="По возрастанию"
+            onClick={()=>changeSortType(Direction.Ascending)}
             sorting={Direction.Ascending}
             isLoader={isLoad}
             disabled={isLoad}
-            onClick={()=>changeSortType(Direction.Ascending)}
           />
           <Button
             text="По убыванию"
+            onClick={()=>changeSortType(Direction.Descending)}
             sorting={Direction.Descending}
             disabled={isLoad}
-            onClick={()=>changeSortType(Direction.Descending)}
           />
         </div>
         <div>
           <Button
-          extraClass={sortingStyle.button_arr}
           text="Новый массив"
-          disabled={isLoad}
           onClick={()=>randomArr(setCreateArr,createArr)}
+          extraClass={sortingStyle.button_arr}
+          disabled={isLoad}
           />
         </div>
       </div>
