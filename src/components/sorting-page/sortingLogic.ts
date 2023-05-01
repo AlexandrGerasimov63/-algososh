@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { ElementStates } from "../../types/element-states";
 import { delay } from "../../utils/utils";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";
