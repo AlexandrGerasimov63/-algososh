@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import styleQeue from "./queue-page.module.css";
 import { Input } from "../ui/input/input";
@@ -19,7 +19,7 @@ export const QueuePage: React.FC = () => {
   const [inputState, setInputState] = useState<string>("");
   const [isAddLoad, setAddLoad] = useState<boolean>(false);
   const [isRemoveLoad, setRemoveLoad] = useState<boolean>(false);
-  console.log(queueArr)
+  const [cleanedLoad,setCleanedLoad]= useState<boolean>(false)
   const changeInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setInputState(evt.target.value);
   };
@@ -39,7 +39,7 @@ export const QueuePage: React.FC = () => {
             onClick={() =>
               addItem(setAddLoad, queue, inputState, setQueueArr, setInputState)
             }
-            disabled={!inputState || queueArr.length>7}
+            disabled={!inputState}
             isLoader={isAddLoad}
           />
           <Button
@@ -50,8 +50,9 @@ export const QueuePage: React.FC = () => {
           />
           <Button
             text="Очистить"
-            onClick={() => clearArr(queue, setQueueArr)}
-            disabled={queue.isEmpty() || isAddLoad || isRemoveLoad}
+            onClick={() => clearArr(queue, setQueueArr, setCleanedLoad)}
+            disabled={(queue.isEmpty() || isAddLoad || isRemoveLoad) && !queue.isHead()}
+            isLoader={cleanedLoad}
           />
         </div>
       </div>

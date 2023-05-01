@@ -6,35 +6,41 @@ class QueueNode<T> {
 }
 
 export class Queue<T> {
-  constructor(givenArr: QueueNode<T>[]) {
-    this.arr = givenArr;
-  }
+    constructor(givenArr: QueueNode<T>[]) {
+        this.arr = givenArr;
+    }
+    
+    arr: QueueNode<T>[] = [];
+    sizeArr = -1;
+    head = -1;
+    tail = -1;
+    turn = 0;
 
-  arr: QueueNode<T>[] = [];
-
-  sizeArr = -1;
-  head = -1;
-  tail = -1;
-  turn = 0;
   
   push = (item: QueueNode<T>) => {
+    // console.log(this.turn)
     if (this.head === -1 && this.tail === -1 && this.turn !== 0) {
       this.arr[this.turn] = item;
       this.tail = this.turn - 1;
       this.head = this.turn;
       this.turn++;
       this.sizeArr++;
-    } else {
+    } 
+    if(this.turn<7) {
       this.arr[this.turn] = item;
       this.turn++;
       this.sizeArr++;
+    } else {
+        return
     }
     if (this.tail < 6) {
-      this.tail++;
+        this.tail++;
     }
     if (this.head < 0) {
-      this.head++;
+        this.head++;
     }
+    
+    
     
   };
 
@@ -43,6 +49,9 @@ export class Queue<T> {
     if (this.head !== this.tail) {
       this.head++;
       this.sizeArr--;
+      console.log(this.sizeArr)
+      console.log(this.head)
+      console.log(this.tail)
     } else {
       this.sizeArr--;
       this.head = -1;
@@ -93,4 +102,5 @@ export class Queue<T> {
   size = () => this.arr.length;
 
   isEmpty = () => this.sizeArr === -1;
+  isHead = () => this.tail === undefined
 }

@@ -9,6 +9,8 @@ export class TItem {
   color!: ElementStates;
 }
 
+
+
 export const addItem = async (
   setAddLoad: Dispatch<SetStateAction<boolean>>,
   queue: Queue<string>,
@@ -43,10 +45,14 @@ export const deleteItem = async (
   setRemoveLoad(false);
 };
 
-export const clearArr = (
+export const clearArr = async(
   queue: Queue<string>,
-  setQueueArr: Dispatch<SetStateAction<TItem[]>>
+  setQueueArr: Dispatch<SetStateAction<TItem[]>>,
+  setCleanLoad: Dispatch<SetStateAction<boolean>>
 ) => {
+  setCleanLoad(true)
+  await delay(SHORT_DELAY_IN_MS)
   queue.clearArr();
   setQueueArr(queue.elements());
+  setCleanLoad(false)
 };
