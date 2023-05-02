@@ -41,7 +41,7 @@ export const QueuePage: React.FC = () => {
             onClick={() =>
               addItem(setAddLoad, queue, inputState, setQueueArr, setInputState)
             }
-            disabled={!inputState}
+            disabled={!inputState || queueArr.length>7}
             isLoader={isAddLoad}
           />
           <Button
