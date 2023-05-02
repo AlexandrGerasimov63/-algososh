@@ -4,7 +4,7 @@ import stringStyle from "./string.module.css"
 import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
-import { stringReverse, TStringArr } from "./stringReverse";
+import { stringReverse, TStringArr } from "./string-logic";
 import { ElementStates } from "../../types/element-states";
 
 export const StringComponent: React.FC = () => {

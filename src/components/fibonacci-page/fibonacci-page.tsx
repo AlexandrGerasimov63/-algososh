@@ -4,7 +4,7 @@ import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
 import { Circle } from "../ui/circle/circle";
-import { sumNumberFibo, showNumberFibo } from "./fibonacci";
+import { sumNumberFibo, showNumberFibo } from "./fibonacc-page-logic";
 
 export const FibonacciPage: React.FC = () => {
   // Добавляем состояние с инпута

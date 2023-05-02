@@ -3,9 +3,9 @@ import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import styleStack from "./stack-page.module.css"
 import { Input } from "../ui/input/input";
 import { Button } from "../ui/button/button";
-import { TItem, addItem, clearArr, deleteItem, takeTop } from "./stackLogic";
+import { TItem, addItem, clearArr, deleteItem, takeTop } from "./stack-page-logic";
 import { Circle } from "../ui/circle/circle";
-import { Stack } from "./stackClass";
+import { Stack } from "./stack-page-class";
 
 export const StackPage: React.FC = () => {
   const [stack] = useState(new Stack<TItem>());

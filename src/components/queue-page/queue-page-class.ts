@@ -18,7 +18,6 @@ export class Queue<T> {
 
   
   push = (item: QueueNode<T>) => {
-    // console.log(this.turn)
     if (this.head === -1 && this.tail === -1 && this.turn !== 0) {
       this.arr[this.turn] = item;
       this.tail = this.turn - 1;
@@ -49,9 +48,7 @@ export class Queue<T> {
     if (this.head !== this.tail) {
       this.head++;
       this.sizeArr--;
-      console.log(this.sizeArr)
-      console.log(this.head)
-      console.log(this.tail)
+      
     } else {
       this.sizeArr--;
       this.head = -1;

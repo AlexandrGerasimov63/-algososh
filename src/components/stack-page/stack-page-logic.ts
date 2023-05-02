@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { Stack } from "./stackClass";
+import { Stack } from "./stack-page-class";
 import { delay } from "../../utils/utils";
 import { ElementStates } from "../../types/element-states";
 import { SHORT_DELAY_IN_MS } from "../../constants/delays";

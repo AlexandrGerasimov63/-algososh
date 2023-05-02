@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SolutionLayout } from "../ui/solution-layout/solution-layout";
 import styleQeue from "./queue-page.module.css";
 import { Input } from "../ui/input/input";
@@ -23,7 +23,9 @@ export const QueuePage: React.FC = () => {
   const changeInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setInputState(evt.target.value);
   };
-
+  useEffect(()=>{
+    clearArr(queue, setQueueArr, setCleanedLoad)
+  },[])
   return (
     <SolutionLayout title="Очередь">
       <div className={styleQeue.input_wrapper}>

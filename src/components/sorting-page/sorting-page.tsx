@@ -4,7 +4,7 @@ import sortingStyle from './sotting-page.module.css'
 import { RadioInput } from "../ui/radio-input/radio-input";
 import { Button } from "../ui/button/button";
 import { Direction } from "../../types/direction";
-import { TArr, randomArr, sortingBubbleAscending, sortingBubbleDescending, sortingChoiseAscending, sortingChoiseDescending } from "./sortingLogic";
+import { TArr, randomArr, sortingBubbleAscending, sortingBubbleDescending, sortingChoiseAscending, sortingChoiseDescending } from "./sorting-page-logic";
 import { Column } from "../ui/column/column";
 
 export const SortingPage: React.FC = () => {
@@ -23,8 +23,8 @@ export const SortingPage: React.FC = () => {
 
   // Отрисовка рандомных массивов на экране
   useEffect(()=>{
-     return randomArr(setCreateArr,createArr)
-    
+      randomArr(setCreateArr,createArr)
+      return ()=>{return}
   },[])
   //Установка значения радио кнопки по клику
   const changeRadioChoise = () => {
