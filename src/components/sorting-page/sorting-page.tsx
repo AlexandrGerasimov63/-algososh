@@ -21,7 +21,7 @@ export const SortingPage: React.FC = () => {
   // Состояние загрузки
   const [isLoad, setIsLoad] = useState<boolean>(false)
 
-  // Отрисовка рандомных массивов на экране
+  // Отрисовка рандомных 'элементов на экране
   useEffect(()=>{
       randomArr(setCreateArr,createArr)
       return ()=>{return}
