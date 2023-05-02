@@ -199,7 +199,7 @@ export const ListPage: React.FC = () => {
           <Button
             extraClass={styleList.index_remove}
             text="Удалить по индексу"
-            disabled={!inputIndxState || disbledbtn || isStarted || (Number(inputIndxState)>listArr.length-1)}
+            disabled={!inputIndxState || disbledbtn || isStarted || (Number(inputIndxState)>listArr.length-1) || (Number(inputIndxState)<0)}
             onClick={() =>
               removeItemIndx(
                 setIsStarted,
