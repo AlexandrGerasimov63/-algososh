@@ -1,0 +1,16 @@
+.input_wrapper {
+  display: flex;
+  width: 522px;
+  margin: 0 auto;
+  gap: 12px;
+}
+.string_list {
+  list-style-type: none;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 0 0 0;
+  gap: 16px;
+  max-width: 1100px;
+}
