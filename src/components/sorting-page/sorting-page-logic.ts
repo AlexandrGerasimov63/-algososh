@@ -29,10 +29,11 @@ export const randomArr = (
 export const sortingChoiseAscending = async (
   arr: TArr[],
   setSortArray: Dispatch<SetStateAction<TArr[]>>,
-  setLoad: Dispatch<SetStateAction<boolean>>
+  setLoad: Dispatch<SetStateAction<boolean>>,
+  setIdLoadAsc : Dispatch<SetStateAction<boolean>>
 ) => {
   setLoad(true);
-
+  setIdLoadAsc(true);
   for (let i = 0; i < arr.length - 1; i++) {
     let tmp = arr[i].value;
     let jIndex = 0;
@@ -59,6 +60,7 @@ export const sortingChoiseAscending = async (
   arr[arr.length - 1].color = ElementStates.Modified;
   setSortArray([...arr]);
   setLoad(false);
+  setIdLoadAsc(false);
 };
 
 // Сортировка выбором на понижение(убывание)
@@ -66,10 +68,11 @@ export const sortingChoiseAscending = async (
 export const sortingChoiseDescending = async (
   arr: TArr[],
   setSortArray: Dispatch<SetStateAction<TArr[]>>,
-  setLoad: Dispatch<SetStateAction<boolean>>
+  setLoad: Dispatch<SetStateAction<boolean>>,
+  setIsLoadDir : Dispatch<SetStateAction<boolean>>
 ) => {
   setLoad(true);
-
+  setIsLoadDir(true)
   for (let i = 0; i < arr.length - 1; i++) {
     let tmp = arr[i].value;
     let jIndex = 0;
@@ -96,6 +99,7 @@ export const sortingChoiseDescending = async (
   arr[arr.length - 1].color = ElementStates.Modified;
   setSortArray([...arr]);
   setLoad(false);
+  setIsLoadDir(false)
 };
 
 // Сортировка пузырьком на повышение(возрастание)
@@ -103,9 +107,11 @@ export const sortingChoiseDescending = async (
 export const sortingBubbleAscending = async (
   arr: TArr[],
   setSortArray: Dispatch<SetStateAction<TArr[]>>,
-  setLoad: Dispatch<SetStateAction<boolean>>
+  setLoad: Dispatch<SetStateAction<boolean>>,
+  setIdLoadAsc : Dispatch<SetStateAction<boolean>>
 ) => {
   setLoad(true);
+  setIdLoadAsc(true);
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length - i - 1; j++) {
       arr[j].color = ElementStates.Changing;
@@ -123,6 +129,7 @@ export const sortingBubbleAscending = async (
     arr[arr.length - i - 1].color = ElementStates.Modified;
   }
   setLoad(false);
+  setIdLoadAsc(false)
 };
 
 // Сортировка пузырьком на понижение(убывание)
@@ -130,9 +137,11 @@ export const sortingBubbleAscending = async (
 export const sortingBubbleDescending = async (
   arr: TArr[],
   setSortArray: Dispatch<SetStateAction<TArr[]>>,
-  setLoad: Dispatch<SetStateAction<boolean>>
+  setLoad: Dispatch<SetStateAction<boolean>>,
+  setIsLoadDir : Dispatch<SetStateAction<boolean>>
 ) => {
   setLoad(true);
+  setIsLoadDir(true)
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length - i - 1; j++) {
       arr[j].color = ElementStates.Changing;
@@ -150,4 +159,5 @@ export const sortingBubbleDescending = async (
     arr[arr.length - i - 1].color = ElementStates.Modified;
   }
   setLoad(false);
+  setIsLoadDir(false)
 };
