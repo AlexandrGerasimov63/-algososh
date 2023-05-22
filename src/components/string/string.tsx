@@ -45,7 +45,7 @@ export const StringComponent: React.FC = () => {
       <ul className={stringStyle.string_list}>
         {inputResult?.map((item, index) => (
           <li key={index}>
-            <Circle letter={item.value} state={item.color} />
+            <Circle letter={item.value} state={item.color}/>
           </li>
         ))}
         

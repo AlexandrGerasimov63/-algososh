@@ -1,0 +1,120 @@
+import { SHORT_DELAY_IN_MS } from "../../src/constants/delays";
+import { CIRCLE, CIRCLE_BOX } from "../constant/constant";
+
+describe("Страница лист работает корректно", function () {
+  beforeEach(function () {
+    cy.visit("/");
+    cy.get("[href='/list']").click();
+    cy.location('pathname').should('eq','/list')
+    cy.get("input[placeholder='Введите текст']").as('inputText')
+    cy.get("input[placeholder='Введите индекс']").as('inputIndex')
+    cy.get('button').eq(1).as('addBtnHead')
+    cy.get('button').eq(2).as('addBtnTail')
+    cy.get('button').eq(3).as('removeBtnHead')
+    cy.get('button').eq(4).as('removeBtnTail')
+    cy.get('button').eq(5).as('addBtnIndex')
+    cy.get('button').eq(6).as('removeBtnIndex')
+    cy.get(CIRCLE_BOX).as('circles')
+  });
+  it('Кнопки отображаются корректно при пустом инпуте', function(){
+    cy.get("@inputText").should('be.empty')
+    cy.get("@inputIndex").should('be.empty')
+    cy.get('@addBtnHead').should('be.disabled')
+    cy.get('@addBtnTail').should('be.disabled')
+    cy.get('@addBtnIndex').should('be.disabled')
+    cy.get('@removeBtnIndex').should('be.disabled')
+    cy.get('@removeBtnHead').should('be.enabled')
+    cy.get('@removeBtnTail').should('be.enabled')
+  })
+  it('Стартовый список отображается корректно', function(){
+    cy.wait(SHORT_DELAY_IN_MS)
+    cy.get('@circles').should('have.length', 4);
+    cy.get("@circles").find(CIRCLE).as("circle");
+    cy.get('@circle').should("have.css", "border-color", "rgb(0, 50, 255)")
+    cy.get('@circles').eq(0).contains(0)
+    cy.get("@circles").eq(0).contains("head")
+    cy.get('@circles').eq(1).contains(34)
+    cy.get('@circles').eq(2).contains(8)
+    cy.get('@circles').eq(3).contains(1)
+    cy.get('@circles').eq(3).contains("tail")
+  })
+  it('Добавление в head работает корректно', function(){
+    cy.wait(SHORT_DELAY_IN_MS)
+    cy.get('@inputText').type(24)
+    cy.get('@addBtnHead').should('be.enabled').click()
+    cy.get('@circles').eq(0).find(CIRCLE).should("have.css", "border-color", "rgb(210, 82, 225)")
+    cy.get('@circles').eq(0).contains(24)
+    cy.wait(SHORT_DELAY_IN_MS)
+    cy.get('@circles').should('have.length', 5)
+    cy.get('@circles').eq(0).find(CIRCLE).should("have.css", "border-color", "rgb(127, 224, 81)")
+    cy.wait(SHORT_DELAY_IN_MS)
+    cy.get('@circles').eq(0).find(CIRCLE).should("have.css", "border-color", "rgb(0, 50, 255)")
+    cy.get('@circles').eq(0).contains(24)
+    cy.get("@circles").eq(0).contains("head")
+  })
+  it('Добавление в tail работает корректно', function(){
+    cy.wait(SHORT_DELAY_IN_MS)
+    cy.get('@inputText').type(24)
+    cy.get('@addBtnTail').should('be.enabled').click()
+    cy.get('@circles').eq(3).find(CIRCLE).should("have.css", "border-color", "rgb(210, 82, 225)")
+    cy.get('@circles').eq(3).contains(24)
+    cy.wait(SHORT_DELAY_IN_MS)
+    cy.get('@circles').should('have.length', 5)
+    cy.get('@circles').eq(4).find(CIRCLE).should("have.css", "border-color", "rgb(127, 224, 81)")
+    cy.wait(SHORT_DELAY_IN_MS)
+    cy.get('@circles').eq(4).find(CIRCLE).should("have.css", "border-color", "rgb(0, 50, 255)")
+    cy.get('@circles').eq(4).contains(24)
+    cy.get("@circles").eq(4).contains("tail")
+  })
+  it('Удаление эл-та из head корректно', function(){
+    cy.wait(SHORT_DELAY_IN_MS)
+    cy.get('@inputText').type(24)
+    cy.get('@addBtnHead').should('be.enabled').click()
+    cy.get('@circles').should('have.length', 5)
+    cy.get('@removeBtnHead').should('be.enabled').click()
+    cy.get('@circles').eq(0).find(CIRCLE).should("have.css", "border-color", "rgb(210, 82, 225)")
+    cy.wait(SHORT_DELAY_IN_MS)
+    cy.get('@circles').should('have.length', 4)
+    cy.get('@circles').eq(0).contains(0)
+    cy.get("@circles").eq(0).contains("head")
+    cy.get('@circles').eq(0).find(CIRCLE).should("have.css", "border-color", "rgb(0, 50, 255)")
+    
+  })
+  it('Удаление эл-та из tail корректно',function(){
+    cy.wait(SHORT_DELAY_IN_MS)
+    cy.get('@inputText').type(24)
+    cy.get('@addBtnTail').should('be.enabled').click()
+    cy.get('@circles').should('have.length', 5)
+    cy.get('@removeBtnTail').should('be.enabled').click()
+    cy.get('@circles').eq(4).find(CIRCLE).should("have.css", "border-color", "rgb(210, 82, 225)")
+    cy.get('@circles').should('have.length', 4)
+    cy.get('@circles').eq(3).contains(1)
+    cy.get("@circles").eq(3).contains("tail")
+    cy.get('@circles').eq(3).find(CIRCLE).should("have.css", "border-color", "rgb(0, 50, 255)")
+    
+  })
+  it('Добавление эл-та по индексу', function(){
+    cy.get('@inputText').type(24)
+    cy.get('@inputIndex').type(2)
+    cy.get('@circles').should('have.length', 4)
+    cy.get('@addBtnIndex').should('be.enabled').click()
+    cy.get('@circles').eq(0).find(CIRCLE).should("have.css", "border-color", "rgb(210, 82, 225)")
+    cy.wait(SHORT_DELAY_IN_MS)
+    cy.get('@circles').eq(0).find(CIRCLE).should("have.css", "border-color", "rgb(210, 82, 225)")
+    cy.get("@circles").eq(0).contains("head")
+    cy.get("@circles").eq(0).contains(0)
+    cy.get('@circles').eq(1).find(CIRCLE).should("have.css", "border-color", "rgb(210, 82, 225)")
+    cy.get("@circles").eq(1).contains(24)
+    cy.get('@circles').eq(1).find(CIRCLE).should("have.css", "border-color", "rgb(0, 50, 255)").contains(34)
+    cy.wait(SHORT_DELAY_IN_MS)
+    cy.get('@circles').eq(2).contains(24)
+    cy.get('@circles').should('have.length', 5)
+  })
+  it('Удаление по индексу эл-та', function(){
+    cy.get('@inputIndex').type(2)
+    cy.get('@circles').should('have.length', 4)
+    cy.get('@removeBtnIndex').should('be.enabled').click()
+    cy.wait(2000);
+    cy.get("@circles").eq(2).contains(1);
+  })
+});

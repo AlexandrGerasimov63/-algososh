@@ -53,9 +53,13 @@ export const sortingChoiseAscending = async (
       arr[jIndex].value = arr[i].value;
       arr[i].value = tmp;
     }
+
     arr[i].color = ElementStates.Modified;
 
     setSortArray([...arr]);
+  }
+  if(arr.length<=0 || arr.length===1){
+    return
   }
   arr[arr.length - 1].color = ElementStates.Modified;
   setSortArray([...arr]);
@@ -96,6 +100,9 @@ export const sortingChoiseDescending = async (
 
     setSortArray([...arr]);
   }
+  if(arr.length<=0 || arr.length===1){
+    return
+  }
   arr[arr.length - 1].color = ElementStates.Modified;
   setSortArray([...arr]);
   setLoad(false);
@@ -125,7 +132,9 @@ export const sortingBubbleAscending = async (
       }
       arr[j].color = ElementStates.Default;
     }
-
+    if(arr.length<=0 || arr.length===1){
+      return
+    }
     arr[arr.length - i - 1].color = ElementStates.Modified;
   }
   setLoad(false);
@@ -155,7 +164,9 @@ export const sortingBubbleDescending = async (
       }
       arr[j].color = ElementStates.Default;
     }
-
+    if(arr.length<=0 || arr.length===1){
+      return
+    }
     arr[arr.length - i - 1].color = ElementStates.Modified;
   }
   setLoad(false);
