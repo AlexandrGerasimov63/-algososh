@@ -20,7 +20,10 @@ export const SortingPage: React.FC = () => {
   const [sortType, setSortType] = useState<Direction>()
   // Состояние загрузки
   const [isLoad, setIsLoad] = useState<boolean>(false)
-
+  // Состояние загрузки по возрастанию
+  const [isLoadAsc, setIsLoadAsc] = useState<boolean>(false)
+  // Состояние загрузки по убыванию
+  const [isLoadDir, setIsLoadDir] = useState<boolean>(false)
   // Отрисовка рандомных 'элементов на экране
   useEffect(()=>{
       randomArr(setCreateArr,createArr)
@@ -39,16 +42,16 @@ export const SortingPage: React.FC = () => {
   const changeSortType = (sorting: Direction) => {
     setSortType(sorting);
     if (sortType === Direction.Ascending && radioType === SortingRadio.Choise) {
-      sortingChoiseAscending(createArr, setCreateArr, setIsLoad);
+      sortingChoiseAscending(createArr, setCreateArr, setIsLoad, setIsLoadAsc);
     }
     if (sortType === Direction.Descending && radioType === SortingRadio.Choise) {
-      sortingChoiseDescending(createArr, setCreateArr, setIsLoad);
+      sortingChoiseDescending(createArr, setCreateArr, setIsLoad, setIsLoadDir);
     }
     if (sortType === Direction.Ascending && radioType === SortingRadio.Bubble) {
-      sortingBubbleAscending(createArr, setCreateArr, setIsLoad);
+      sortingBubbleAscending(createArr, setCreateArr, setIsLoad, setIsLoadAsc);
     }
     if (sortType === Direction.Descending && radioType === SortingRadio.Bubble) {
-      sortingBubbleDescending(createArr, setCreateArr, setIsLoad);
+      sortingBubbleDescending(createArr, setCreateArr, setIsLoad, setIsLoadDir);
     }
   };
 
@@ -75,7 +78,7 @@ export const SortingPage: React.FC = () => {
             text="По возрастанию"
             onClick={()=>changeSortType(Direction.Ascending)}
             sorting={Direction.Ascending}
-            isLoader={isLoad}
+            isLoader={isLoadAsc}
             disabled={isLoad}
           />
           <Button
@@ -83,6 +86,7 @@ export const SortingPage: React.FC = () => {
             onClick={()=>changeSortType(Direction.Descending)}
             sorting={Direction.Descending}
             disabled={isLoad}
+            isLoader={isLoadDir}
           />
         </div>
         <div>
